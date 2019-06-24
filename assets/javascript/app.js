@@ -5,10 +5,12 @@ var intervalID = null;
 var correctAnswerCount = 0;
 var incorrectAnswerCount = 0;
 var unansweredCount = 0;
-var questionTimeoutDuration = 2000;
+var questionTimeoutDuration = 5000;
+var noMoreClicks = false;
 
 function showQuestion()
 {
+    noMoreClicks = false;
     clearInterval(intervalID);
     
     if (questionNumber > lastquestionNumber)
@@ -24,11 +26,9 @@ function showQuestion()
     }
     else
     {
-        for(var i=0; i<4; i++)
-        {
-            $("#a" + i).removeClass("btn-success btn-danger text-white");
-            $("#a" + i).addClass("text-info");
-        }
+        $(".answerBtn").removeClass("btn-success btn-danger text-white");
+        $(".answerBtn").addClass("text-info");
+
         questionData = data[questionNumber];
         questionData["correctAnswerPos"] = Math.floor(Math.random() * 4);
 
@@ -98,22 +98,25 @@ $("#startOverBtn").click(function()
 
 $(".answerBtn").click(function()
 {
-    clearInterval(intervalID);
-    $("#timer").css("display", "none");
-    $answer = $(event.target);
+    if(!noMoreClicks)
+    {
+        noMoreClicks = true;
+        clearInterval(intervalID);
+        $("#timer").css("display", "none");
+        $answer = $(event.target);
 
-console.log($answer.html());
-console.log(questionData.correct_answer);
-    if ($answer.html() === questionData.correct_answer)
-    {
-        correctAnswerCount++;
-        $answer.toggleClass("text-info btn-success text-white");
+        if ($answer.html() === questionData.correct_answer)
+        {
+            correctAnswerCount++;
+            $answer.toggleClass("text-info btn-success text-white");
+        }
+        else 
+        {
+            incorrectAnswerCount++;
+            $answer.toggleClass("text-info btn-danger text-white");
+            $("#a" + questionData.correctAnswerPos).toggleClass("text-info btn-success text-white");
+
+        }
+        setTimeout(showQuestion, questionTimeoutDuration);
     }
-    else 
-    {
-        incorrectAnswerCount++;
-        $answer.toggleClass("text-info btn-danger text-white");
-        $("#a" + questionData.correctAnswerPos).toggleClass("text-info btn-success text-white");
-    }
-    setTimeout(showQuestion, questionTimeoutDuration);
 });
