@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trivia Game</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+    <link rel="stylesheet" href="assets/css/styles.css">
+</head>
+<body>
+
+<div class="jumbotron py-2 mb-0 text-center">
+    <h2 class="display-3">Trivia Game</h2>
+</div>
+<div id="wrapper" class="h-100">
+    <div class="container" id="startScreen">
+        <div class="row">
+            <div class="col-md-12 mt-5 text-center">
+                <button id="startBtn" class="btn btn-block btn-lg border border-info">Start</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="container bg-info border rounded d-none" id="gameScreen">
+        <div class="row">
+            <div class="col-md-12 my-4 text-center bg-info text-white">
+                <div class="h3 font-weight-bold">Time Remaining: <span id="timer"></span></div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-1"></div>
+            <div class="col-md-10 mb-3">
+                <div class="h4 border rounded bg-white text-info px-2 py-2 text-center"> - <span id="questionNumber"></span> - <div id="question" class="h4 text-center"></div></div>
+            </div>
+            <div class="col-md-1"></div>
+        </div>
+        <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-6 mb-3">
+                <button id="a0" class="d-block mb-2 px-2 btn btn-lg text-info w-100 answerBtn">1</button>
+                <button id="a1" class="d-block mb-2 px-2 btn btn-lg text-info w-100 answerBtn">2</button>
+                <button id="a2" class="d-block mb-2 px-2 btn btn-lg text-info w-100 answerBtn">3</button>
+                <button id="a3" class="d-block mb-2 px-2 btn btn-lg text-info w-100 answerBtn">4</button>
+                <div id="status"></div>
+            </div>
+            <div class="col-md-3"></div>
+        </div>
+    </div>
+    <div class="container d-none" id="resultScreen">
+        <div class="row">
+            <div class="col-md-12 mb-2">
+                <div id="resultDiv" class="h4 border border-info rounded text-info p-2 text-center">
+                    <h2 class="mb-4">You finished!</h2>
+                    <p>Here are your results:</p>
+                    <p>Correctly Answered: <span id="correct"></span></p>
+                    <p>Incorrectly Answered: <span id="incorrect"></span></p>
+                    <p>Unanswered: <span id="unanswered"></span></p>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 text-center">
+                <button id="startOverBtn" class="btn btn-block btn-lg border border-info">Start Over</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="assets/javascript/data.js"></script>
+<script src="assets/javascript/app.js"></script>
+
+</body>
+</html>

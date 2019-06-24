@@ -1,0 +1,12 @@
+html, body {
+    height: 100%;
+}
+
+#wrapper {
+    background-image: url("../images/background.jpg");
+    background-size: cover;
+}
+
+#resultDiv {
+    background-color: #e9ecef;
+}
